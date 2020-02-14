@@ -4,9 +4,15 @@ Generate a Rails project with: RSpec, Capybara, FactoryBot, Shoulda-matchers & R
 
 Instruction:
 
-  - Check railsrc & template.rb. Update if needed.
+  - `railsrc`: Get options from `rails new --help`. Check `railsrc_example` as example.
+  - `template.rb`:  Update gems' version if needed.
   - Run
   ```shell
   gem install rails
+
+  # use railsrc
   rails new project_name --rc=railsrc --template=template.rb
+
+  # or if you do not want to use railsrc
+  # rails new project_name --database=mysql --template=template.rb
   ```
