@@ -1,5 +1,12 @@
 # rails-template
 
-- It configures ES6 with modules (almond.js)
-- Generates Ruboto, ESLint and EditorConfig files
-- Uses [dotenv](https://github.com/bkeepers/dotenv), [rails-env](https://github.com/fnando/rails-env) and [env_vars](https://github.com/fnando/env_vars) for configuration
+Generate a Rails project with: RSpec, Capybara, FactoryBot, Shoulda-matchers & Rubocop
+
+Instruction:
+
+  - Check railsrc & template.rb. Update if needed.
+  - Run
+  ```shell
+  gem install rails
+  rails new project_name --rc=railsrc --template=template.rb
+  ```

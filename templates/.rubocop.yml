@@ -1,0 +1,39 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+Layout/ClassStructure:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - "spec/**/*.rb"
+
+Metrics/LineLength:
+  Max: 80
+
+Metrics/MethodLength:
+  Max: 25
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+AllCops:
+  Exclude:
+    - "bin/*"

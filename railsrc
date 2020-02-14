@@ -1,0 +1,7 @@
+# .railsrc
+--api
+--database=postgresql
+--skip-test
+--skip-system-test
+--skip-spring
+--skip-turbolinks
