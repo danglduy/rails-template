@@ -5,6 +5,9 @@ require:
 Layout/ClassStructure:
   Enabled: true
 
+Layout/LineLength:
+  Max: 80
+
 Metrics/AbcSize:
   Max: 20
 
@@ -12,9 +15,6 @@ Metrics/BlockLength:
   Max: 30
   Exclude:
     - "spec/**/*.rb"
-
-Metrics/LineLength:
-  Max: 80
 
 Metrics/MethodLength:
   Max: 25
@@ -37,3 +37,7 @@ Style/TrailingCommaInHashLiteral:
 AllCops:
   Exclude:
     - "bin/*"
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+
