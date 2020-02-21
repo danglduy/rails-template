@@ -1,0 +1,6 @@
+function_name: 'add_commit'
+arguments:
+  - message
+steps:
+  - run: git add -A
+  - run: git commit -m "%{message}"

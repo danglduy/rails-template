@@ -1,0 +1,5 @@
+function_name: 'create_initial_commit'
+steps:
+  - run: bundle install
+  - run: bundle binstubs bundler
+  - add_commit: Init

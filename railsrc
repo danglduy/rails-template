@@ -1,3 +1,7 @@
 # .railsrc
-# see railsrc_example and `rails new --help` for options
-
+--api
+--database=postgresql
+--skip-test
+--skip-system-test
+--skip-spring
+--skip-turbolinks

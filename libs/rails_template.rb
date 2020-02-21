@@ -1,9 +1,11 @@
 require 'pathname'
+require_relative 'helpers'
 
 module Libs
   class RailsTemplate < Thor::Group
     include Thor::Actions
     include Rails::Generators::Actions
+    include Libs::Helpers
 
     RSPEC_VER = 3.9
     SHOULDA_VER = 4.2
@@ -18,17 +20,11 @@ module Libs
 #       self.destination_root = current_dir
 #     end
 
-    def create_initial_commit
-      run 'bundle install'
-      run 'bundle binstubs bundler'
-      git_add_commit 'Init'
-    end
-
     def install_rspec
       insert_into_file 'Gemfile', "  gem 'rspec-rails', '~> #{RSPEC_VER}'\n", after: "group :development, :test do\n"
       run 'bundle install'
       run 'rails generate rspec:install'
-      git_add_commit 'Add rspec'
+      add_commit message: 'Add rspec'
     end
 
     def add_test_gem_group
@@ -48,7 +44,7 @@ module Libs
       run 'bundle install'
       copy_file 'spec/support/shoulda_matchers.rb'
       insert_into_file 'spec/rails_helper.rb', "require 'support/shoulda_matchers'\n", after: "require 'spec_helper'\n"
-      git_add_commit 'Add shoulda-matchers'
+      add_commit 'Add shoulda-matchers'
     end
 
     def install_capybara
@@ -56,7 +52,7 @@ module Libs
       run 'bundle install'
       copy_file 'spec/support/capybara.rb'
       insert_into_file 'spec/rails_helper.rb', "require 'support/capybara'\n", after: "require 'spec_helper'\n"
-      git_add_commit 'Add capybara'
+      add_commit 'Add capybara'
     end
 
     def install_factory_bot
@@ -64,7 +60,7 @@ module Libs
       run 'bundle install'
       copy_file 'spec/support/factory_bot.rb'
       insert_into_file 'spec/rails_helper.rb', "require 'support/factory_bot'\n", after: "require 'spec_helper'\n"
-      git_add_commit 'Add factory_bot_rails'
+      add_commit 'Add factory_bot_rails'
     end
 
     def install_rubocop
@@ -84,17 +80,12 @@ module Libs
 
       run 'bundle install'
       run 'bundle exec rubocop --auto-correct --disable-uncorrectable'
-      git_add_commit 'Add rubocop'
+      add_commit 'Add rubocop'
     end
 
     private
     def api?
       options[:api]
-    end
-
-    def git_add_commit(message)
-      run 'git add -A'
-      run "git commit -m '#{message}'"
     end
   end
 end
