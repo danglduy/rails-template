@@ -20,12 +20,11 @@ module Libs
 #       self.destination_root = current_dir
 #     end
 
-    def install_rspec
-      insert_into_file 'Gemfile', "  gem 'rspec-rails', '~> #{RSPEC_VER}'\n", after: "group :development, :test do\n"
-      run 'bundle install'
-      run 'rails generate rspec:install'
-      add_commit message: 'Add rspec'
-    end
+		def create_initial_commit
+			run 'bundle install'
+			run 'bundle binstubs bundler'
+			add_commit 'Init'
+		end
 
     def add_test_gem_group
       return unless api?

@@ -1,0 +1,14 @@
+function_name: install_rspec
+args:
+  - rspec_version
+steps:
+  - insert_into_file:
+    - 'Gemfile'
+    - "  gem 'rspec-rails', '~> %{rspec_version}'\n"
+    - after: "group :development, :test do\n"
+  - run:
+    - bundle install
+  - run:
+    - rails generate rspec:install
+  - add_commit:
+    - 'Add rspec'
