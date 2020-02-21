@@ -4,7 +4,7 @@ Generate a Rails project with: RSpec, Capybara, FactoryBot, Shoulda-matchers & R
 
 Instruction:
 
-  - `railsrc`: Get options from `rails new --help`. Check `railsrc_example` as example.
+  - `railsrc`: Get options from `rails new --help`.
   - `template.rb`:  Update gems' version if needed.
   - Run
   ```shell
