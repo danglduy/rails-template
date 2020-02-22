@@ -1,0 +1,18 @@
+name: install_shoulda_matchers
+args:
+  - version
+cmds:
+  - insert_into_file:
+    - 'Gemfile'
+    - "  gem 'shoulda-matchers', '~> %{version}'\n"
+    - :after: "group :test do\n"
+  - run:
+    - bundle install
+  - copy_file:
+    - 'spec/support/shoulda_matchers.rb'
+  - insert_into_file:
+    - 'spec/rails_helper.rb'
+    - "require 'support/shoulda_matchers'\n"
+    - :after: "require 'spec_helper'\n"
+  - add_commit:
+    - 'Add shoulda-matchers'

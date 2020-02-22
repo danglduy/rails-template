@@ -1,11 +1,11 @@
-function_name: install_rspec
+name: install_rspec
 args:
-  - rspec_version
-steps:
+  - version
+cmds:
   - insert_into_file:
     - 'Gemfile'
-    - "  gem 'rspec-rails', '~> %{rspec_version}'\n"
-    - after: "group :development, :test do\n"
+    - "  gem 'rspec-rails', '~> %{version}'\n"
+    - :after: "group :development, :test do\n"
   - run:
     - bundle install
   - run:

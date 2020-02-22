@@ -1,0 +1,8 @@
+name: create_initial_commit
+cmds:
+  - run:
+    - bundle install
+  - run:
+    - bundle binstubs bundler
+  - add_commit:
+    - 'Init'

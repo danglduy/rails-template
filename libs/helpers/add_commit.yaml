@@ -1,7 +1,7 @@
-function_name: 'add_commit'
+name: add_commit
 args:
   - message
-steps:
+cmds:
   - run:
     - git add -A
   - run:
