@@ -5,6 +5,7 @@ g.destination_root = Dir.pwd
 g.options = options.merge(app_name: app_name, rails_generator: self)
 
 g.create_initial_commit
+g.exclude_database_yml
 g.install_rspec 3.9
 g.add_test_gem_group
 g.install_capybara 3.31

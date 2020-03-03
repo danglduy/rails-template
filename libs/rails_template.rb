@@ -19,6 +19,16 @@ module Libs
       add_commit 'Init'
     end
 
+    def exclude_database_yml
+      inside(destination_root) do
+        run 'git rm --cached config/database.yml'
+        run 'cp config/database.yml config/database.yml.example'
+      end
+
+      append_to_file '.gitignore', '/config/database.yml'
+      add_commit 'Exclude database.yml'
+    end
+
     def install_rspec(version)
       insert_into_file 'Gemfile',
                        "  gem 'rspec-rails', '~> #{version}'\n",
