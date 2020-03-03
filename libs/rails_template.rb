@@ -14,8 +14,6 @@ module Libs
     end
 
     def create_initial_commit
-      run 'bundle install'
-      run 'bundle binstubs bundler'
       add_commit 'Init'
     end
 
@@ -43,7 +41,7 @@ module Libs
 
       # remove existing group test created by rails
       # gsub_file('Gemfile', /^(group :test)[\s\S]*?[\n\r]end\n/, '')
-      insert_into_file 'Gemfile', before: "group :development, :test do\n" do
+      insert_into_file 'Gemfile', after: /group :development do[^\0]*?end\n/ do
         <<~RUBY
           group :test do
           end
@@ -96,6 +94,8 @@ module Libs
 
       # remove Gemfile comments
       gsub_file('Gemfile', /(^#|(^\s+#))(?! gem).*\n/, '')
+      # insert fake blank lines for rubocop to clean
+      gsub_file('Gemfile', /end$|^ruby(.*)$\n/) { |match| match << "\n" }
 
       insert_into_file 'Gemfile', after: "group :development, :test do\n" do
         <<~RUBY
@@ -116,9 +116,13 @@ module Libs
       options[:api]
     end
 
+    def skip_spring?
+      options[:skip_spring]
+    end
+
     def add_commit(message)
-      run 'git add -A'
-      run "git commit -m '#{message}'"
+      git add: '.'
+      git commit: "-m '#{message}'"
     end
   end
 end
