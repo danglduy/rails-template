@@ -32,25 +32,13 @@ module Libs
                        "  gem 'rspec-rails', '~> #{version}'\n",
                        after: "group :development, :test do\n"
       run 'bundle install'
-      run 'rails generate rspec:install'
+      rails_command 'generate rspec:install'
       add_commit 'Add rspec'
     end
 
-    def add_test_gem_group
-      return unless api?
-
-      # remove existing group test created by rails
-      # gsub_file('Gemfile', /^(group :test)[\s\S]*?[\n\r]end\n/, '')
-      insert_into_file 'Gemfile', after: /group :development do[^\0]*?end\n/ do
-        <<~RUBY
-          group :test do
-          end
-        RUBY
-      end
-    end
-
     def install_capybara(version)
-      if api?
+      if api? || skip_test? || skip_system_test?
+        add_test_gem_group
         insert_into_file 'Gemfile',
                          "  gem 'capybara', '~> #{version}'\n",
                          after: "group :test do\n"
@@ -112,12 +100,27 @@ module Libs
 
     private
 
+    def add_test_gem_group
+      # remove existing group test created by rails
+      # gsub_file('Gemfile', /^(group :test)[\s\S]*?[\n\r]end\n/, '')
+      insert_into_file 'Gemfile', after: /group :development do[^\0]*?end\n/ do
+        <<~RUBY
+          group :test do
+          end
+        RUBY
+      end
+    end
+
     def api?
       options[:api]
     end
 
-    def skip_spring?
-      options[:skip_spring]
+    def skip_test?
+      options[:skip_test]
+    end
+
+    def skip_system_test?
+      options[:skip_system_test]
     end
 
     def add_commit(message)

@@ -10,7 +10,6 @@ after_bundle do
   g.create_initial_commit
   g.exclude_database_yml
   g.install_rspec 3.9
-  g.add_test_gem_group
   g.install_capybara 3.31
   g.install_factory_bot 5.1
   g.install_shoulda_matchers 4.2
