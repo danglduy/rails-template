@@ -10,8 +10,8 @@ after_bundle do
   g.create_initial_commit
   g.exclude_database_yml
   g.install_rspec 4.0
-  g.install_capybara 3.32
-  g.install_factory_bot 5.2
+  g.install_capybara 3.3
+  g.install_factory_bot 6.1
   g.install_shoulda_matchers 4.3
   g.install_rubocop
 end

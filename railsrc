@@ -1,5 +1,6 @@
 # .railsrc
---database=postgresql
+--database=mysql
+--api
 --skip-test
 --skip-system-test
 --skip-spring

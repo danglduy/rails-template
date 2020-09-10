@@ -32,7 +32,7 @@ Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
 Style/StringLiterals:
-  EnforcedStyle: single_quotes
+  EnforcedStyle: double_quotes
 
 Style/SymbolArray:
   EnforcedStyle: brackets
