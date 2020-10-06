@@ -94,7 +94,7 @@ module Libs
       end
 
       run 'bundle install'
-      run 'bundle exec rubocop --auto-correct --disable-uncorrectable'
+      run 'bundle exec rubocop --auto-correct'
       add_commit 'Add rubocop and editorconfig'
     end
 
