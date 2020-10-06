@@ -55,7 +55,7 @@ module Libs
     def install_factory_bot(version)
       insert_into_file 'Gemfile',
                        "  gem 'factory_bot_rails', '~> #{version}'\n",
-                       after: "group :test do\n"
+                       after: "group :development, :test do\n"
       run 'bundle install'
       copy_file 'spec/support/factory_bot.rb'
       insert_into_file 'spec/rails_helper.rb',
