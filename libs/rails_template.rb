@@ -27,20 +27,20 @@ module Libs
       add_commit 'Exclude database.yml'
     end
 
-    def install_rspec(version)
+    def install_rspec
       insert_into_file 'Gemfile',
-                       "  gem 'rspec-rails', '~> #{version}'\n",
+                       "  gem 'rspec-rails'\n",
                        after: "group :development, :test do\n"
       run 'bundle install'
       rails_command 'generate rspec:install'
       add_commit 'Add rspec'
     end
 
-    def install_capybara(version)
+    def install_capybara
       if api? || skip_test? || skip_system_test?
         add_test_gem_group
         insert_into_file 'Gemfile',
-                         "  gem 'capybara', '~> #{version}'\n",
+                         "  gem 'capybara'\n",
                          after: "group :test do\n"
       end
 
@@ -52,9 +52,9 @@ module Libs
       add_commit 'Add capybara'
     end
 
-    def install_factory_bot(version)
+    def install_factory_bot
       insert_into_file 'Gemfile',
-                       "  gem 'factory_bot_rails', '~> #{version}'\n",
+                       "  gem 'factory_bot_rails'\n",
                        after: "group :development, :test do\n"
       run 'bundle install'
       copy_file 'spec/support/factory_bot.rb'
@@ -64,9 +64,9 @@ module Libs
       add_commit 'Add factory_bot_rails'
     end
 
-    def install_shoulda_matchers(version)
+    def install_shoulda_matchers
       insert_into_file 'Gemfile',
-                       "  gem 'shoulda-matchers', '~> #{version}'\n",
+                       "  gem 'shoulda-matchers'\n",
                        after: "group :test do\n"
       run 'bundle install'
       copy_file 'spec/support/shoulda_matchers.rb'

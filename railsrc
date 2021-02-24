@@ -1,5 +1,4 @@
 # .railsrc
---database=mysql
 --api
 --skip-test
 --skip-system-test
